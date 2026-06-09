@@ -1,0 +1,5 @@
+package enums;
+
+public enum Objective {
+	LEADS, SALES, WEBSITE_TRAFFIC, BRAND_AWARENESS, APP_INSTALLS, RETARGETING, OTHER
+}
