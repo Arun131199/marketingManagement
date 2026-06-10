@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import services.CampaignService;
 
 import java.util.List;
@@ -50,6 +51,12 @@ public class CampaignController {
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         campaignService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/import")
+    public ResponseEntity<List<CampaignResponse>> importCampaign(@RequestParam("File")MultipartFile file){
+        List<CampaignResponse> imported=campaignService.importFromFile(file);
+        return ResponseEntity.status(HttpStatus.CREATED).body(imported);
     }
 
 }
